@@ -99,9 +99,7 @@ I am a MS in Computer Science student at University of Maryland, College Park (F
 <br/>
 <b>Research interest</b>
 <br/>
-Neural Rendering, Physically-Based Rendering, 3D Reconstruction
-<br/>
-Computer Graphics, Computer Vision.
+Computer Graphics: Differentiable Rendering and Simulation
 
 
 <!-- <hr/>
