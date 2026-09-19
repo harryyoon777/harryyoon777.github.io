@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PanoSeg3R</title>
+<meta name="description" content="PanoSeg3R: Feed-Forward 3D Semantic Segmentation for Panoramic Images with an Automatic Data Curation Pipeline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #f5f7f9;
+    --surface: #ffffff;
+    --sunk: #eaeef2;
+    --ink: #14202e;
+    --muted: #566476;
+    --faint: #8794a3;
+    --line: #d9e0e7;
+    --accent: #0b7285;
+    --accent-ink: #ffffff;
+    --accent-soft: #d5eef1;
+    --ours: #b3307f;
+    --grid: rgba(11, 114, 133, .16);
+    --viewer-bg: #f1f3f6;
+    --shadow: 0 1px 2px rgba(20, 32, 46, .06), 0 10px 30px -18px rgba(20, 32, 46, .35);
+    --display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
+    --body: 'Source Sans 3', 'Source Sans Pro', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    --gutter: clamp(16px, 4vw, 44px);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0e141b;
+      --surface: #161f29;
+      --sunk: #1c2733;
+      --ink: #e5ecf2;
+      --muted: #9aa8b7;
+      --faint: #6f7d8c;
+      --line: #273442;
+      --accent: #40bfd1;
+      --accent-ink: #06222a;
+      --accent-soft: #123843;
+      --ours: #e577bf;
+      --grid: rgba(64, 191, 209, .14);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 30px -16px rgba(0, 0, 0, .7);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0e141b;
+    --surface: #161f29;
+    --sunk: #1c2733;
+    --ink: #e5ecf2;
+    --muted: #9aa8b7;
+    --faint: #6f7d8c;
+    --line: #273442;
+    --accent: #40bfd1;
+    --accent-ink: #06222a;
+    --accent-soft: #123843;
+    --ours: #e577bf;
+    --grid: rgba(64, 191, 209, .14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 30px -16px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; height: auto; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: var(--gutter); }
+  .mono { font-family: var(--mono); }
+
+  /* nav */
+  nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+    background: color-mix(in srgb, var(--ground) 86%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent; transition: border-color .25s;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 16px; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.2rem; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+  .brand span { color: var(--accent); }
+  .navlinks { display: flex; gap: clamp(12px, 2.4vw, 28px); }
+  .navlinks a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: .95rem; }
+  .navlinks a:hover { color: var(--ink); }
+
+  /* hero with an equirectangular graticule behind it */
+  header.hero { position: relative; overflow: hidden; padding-block: clamp(56px, 9vw, 104px) clamp(40px, 6vw, 64px); text-align: center; }
+  .graticule { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 45%, #000 20%, transparent 78%);
+            mask-image: radial-gradient(ellipse 70% 80% at 50% 45%, #000 20%, transparent 78%); }
+  .graticule line { stroke: var(--grid); stroke-width: 1; }
+  .graticule text { fill: var(--faint); font-family: var(--mono); font-size: 10px; }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero-name {
+    font-family: var(--display); font-weight: 800; letter-spacing: -.035em; line-height: 1;
+    font-size: clamp(3rem, 10vw, 6.2rem); margin: 0;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-sub {
+    font-family: var(--display); font-weight: 500; font-size: clamp(1.15rem, 2.4vw, 1.6rem); line-height: 1.3;
+    max-width: 30em; margin: 18px auto 0; text-wrap: balance; color: var(--ink);
+  }
+  .authors { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px; font-size: 1.12rem; font-weight: 600; }
+  .authors span { white-space: nowrap; }
+  .affil { margin-top: 6px; color: var(--muted); }
+  .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px;
+    font-family: var(--body); font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer;
+    border: 1.5px solid var(--ink); color: var(--ink); background: transparent;
+    transition: background .2s, color .2s, transform .2s;
+  }
+  .btn:hover { background: var(--ink); color: var(--ground); transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { filter: brightness(1.08); background: var(--accent); color: var(--accent-ink); }
+  .btn svg { width: 17px; height: 17px; }
+  .soon { font-family: var(--mono); font-size: .68rem; font-weight: 500; opacity: .7; }
+
+  /* sections */
+  section { padding-block: clamp(52px, 8vw, 88px); }
+  section + section { border-top: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+  h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.7rem, 3.6vw, 2.5rem); letter-spacing: -.02em; line-height: 1.15; margin: 0 0 14px; text-wrap: balance; }
+  .lede { color: var(--muted); font-size: 1.1rem; max-width: 64ch; margin: 0 0 32px; text-wrap: pretty; }
+  .abstract .name { color: var(--accent); }
+  .abstract { font-size: 1.12rem; max-width: 70ch; margin: 0; text-wrap: pretty; }
+
+  figure { margin: 0; }
+  .plate { background: #ffffff; border: 1px solid var(--line); border-radius: 12px; padding: clamp(8px, 1.6vw, 18px); box-shadow: var(--shadow); }
+  .plate a { display: block; }
+  figcaption { color: var(--muted); font-size: .96rem; margin-top: 12px; max-width: 80ch; }
+  figcaption b { color: var(--ink); }
+
+  .overview-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .contribs { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 14px; }
+  .contribs li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; }
+  .contribs b { color: var(--accent); }
+  .contribs svg { width: 20px; height: 20px; margin-top: 4px; color: var(--accent); }
+
+  .method-text { font-size: 1.12rem; max-width: 60ch; }
+  .method-text p { margin: 0 0 16px; text-wrap: pretty; }
+  .method-text b { color: var(--accent); }
+  .method-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  .modules { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .modules div { padding: 14px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; }
+  .modules dt { font-weight: 700; }
+  .modules dd { margin: 0; grid-column: 1 / -1; color: var(--muted); font-size: 1rem; }
+  .state { font-family: var(--mono); font-size: .72rem; padding: 2px 8px; border-radius: 999px; align-self: center; }
+  .state.frozen { background: var(--sunk); color: var(--muted); }
+  .state.trained { background: var(--accent-soft); color: var(--accent); }
+
+  .steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; counter-reset: step; }
+  .steps li { counter-increment: step; padding: 4px 18px 4px 0; }
+  .steps li + li { padding-left: 18px; border-left: 1px solid var(--line); }
+  .steps li::before { content: counter(step); display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--mono); font-size: .8rem; margin-bottom: 8px; }
+  .steps h3 { font-family: var(--display); font-weight: 700; font-size: 1.08rem; margin: 0 0 4px; }
+  .steps p { margin: 0; color: var(--muted); font-size: .98rem; line-height: 1.5; }
+
+  details.more { margin-top: 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  details.more summary { cursor: pointer; list-style: none; padding: 12px 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary::before { content: ''; width: 8px; height: 8px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); transition: transform .2s; }
+  details.more[open] summary::before { transform: rotate(45deg); }
+  details.more > figure { padding: 0 16px 16px; }
+  details.more .plate { box-shadow: none; }
+
+  /* curation viewer */
+  .cur-shell { margin-top: 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(12px, 2vw, 22px); box-shadow: var(--shadow); }
+  .cur-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 14px; }
+  .cur-title { font-family: var(--display); font-weight: 700; font-size: 1.3rem; margin: 0; }
+  .cur-sub { margin: 2px 0 0; color: var(--muted); font-size: 1rem; }
+  .cur-thumbs { display: flex; gap: 8px; overflow-x: auto; padding: 4px 3px 10px; scroll-snap-type: x proximity; }
+  .cur-thumb { flex: 0 0 auto; width: 132px; aspect-ratio: 2 / 1; max-width: 100%; padding: 0; border: 0; border-radius: 7px; overflow: hidden; cursor: pointer; background: var(--sunk); scroll-snap-align: start; position: relative; }
+  .cur-thumb img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.55); opacity: .8; transition: filter .2s, opacity .2s; }
+  .cur-thumb:hover img, .cur-thumb.active img { filter: none; opacity: 1; }
+  .cur-thumb.active { box-shadow: 0 0 0 3px var(--accent); }
+  .cur-thumb span { position: absolute; left: 4px; bottom: 4px; font-family: var(--mono); font-size: .6rem; color: #fff; background: rgba(10, 16, 24, .68); padding: 0 5px; border-radius: 3px; }
+  .cur-main { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 18px; margin-top: 10px; align-items: start; }
+  .cur-stage { position: relative; display: grid; gap: 10px; }
+  .pano { position: relative; aspect-ratio: 2 / 1; max-width: 100%; border-radius: 8px; overflow: hidden; background: #0c1117; cursor: crosshair; }
+  .pano img, .pano canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .pano img { object-fit: cover; }
+  #cur-rgb-hl { pointer-events: none; }
+  .pano-tag { position: absolute; z-index: 2; top: 8px; left: 8px; font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: rgba(10, 16, 24, .62); padding: 2px 8px; border-radius: 4px; pointer-events: none; }
+  .cur-tip { position: absolute; z-index: 5; pointer-events: none; transform: translate(12px, -130%); background: var(--ink); color: var(--ground); font-weight: 600; font-size: .9rem; padding: 3px 10px; border-radius: 6px; white-space: nowrap; display: flex; align-items: center; gap: 7px; }
+  .cur-tip i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .cur-legend { border: 1px solid var(--line); border-radius: 10px; padding: 10px 6px 8px; }
+  .cur-legend-head { display: flex; justify-content: space-between; padding: 0 8px 6px; font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); border-bottom: 1px solid var(--line); }
+  .cur-legend ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 1px; }
+  .cur-legend li button { width: 100%; display: grid; grid-template-columns: 14px 1fr auto; gap: 9px; align-items: center; padding: 4px 8px; border: 0; border-radius: 6px; background: transparent; color: var(--ink); font-family: var(--body); font-size: .96rem; text-align: left; cursor: pointer; }
+  .cur-legend li button:hover, .cur-legend li button.on { background: var(--sunk); }
+  .cur-legend .sw { width: 14px; height: 14px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15); }
+  .cur-legend .pct { font-family: var(--mono); font-size: .76rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .cur-meta { margin: 8px 8px 0; font-size: .7rem; color: var(--faint); word-break: break-all; }
+
+  /* 3D viewer */
+  .viewer-shell { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(12px, 2vw, 20px); box-shadow: var(--shadow); }
+  .scene-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 10px; }
+  .scene-btn { position: relative; padding: 0; border: 0; border-radius: 8px; overflow: hidden; cursor: pointer; aspect-ratio: 2 / 1; max-width: 100%; background: var(--sunk); outline-offset: 2px; }
+  .scene-btn img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.55); opacity: .8; transition: filter .2s, opacity .2s; }
+  .scene-btn:hover img { filter: none; opacity: 1; }
+  .scene-btn.active { box-shadow: 0 0 0 3px var(--accent); }
+  .scene-btn.active img { filter: none; opacity: 1; }
+  .scene-btn span { position: absolute; left: 5px; bottom: 5px; font-family: var(--mono); font-size: .64rem; color: #fff; background: rgba(10, 16, 24, .68); padding: 1px 6px; border-radius: 4px; }
+  .inputs-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin: 18px 0 8px; flex-wrap: wrap; }
+  .inputs-head .mono { font-size: .78rem; color: var(--muted); }
+  .inputs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; }
+  .inputs img { height: 76px; width: auto; border-radius: 6px; flex: 0 0 auto; }
+
+  .viewers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+  .vpanel { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .vhead { display: flex; align-items: center; min-height: 36px; gap: 10px; flex-wrap: wrap; }
+  .vlabel { font-family: var(--display); font-weight: 700; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 8px; }
+  .vlabel::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--ours); }
+  .seg { display: inline-flex; flex-wrap: wrap; background: var(--sunk); border-radius: 999px; padding: 3px; gap: 2px; }
+  .seg button { font-family: var(--body); font-weight: 600; font-size: .95rem; cursor: pointer; padding: 5px 14px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); }
+  .seg button:hover { color: var(--ink); }
+  .seg button.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .15); }
+  #method-seg button { font-family: var(--display); font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+  #method-seg button:hover { background: var(--line); }
+  #method-seg button.active { background: var(--accent); color: var(--accent-ink); box-shadow: none; }
+  .canvas-box { position: relative; height: min(58vh, 520px); min-height: 300px; border-radius: 10px; overflow: hidden; background: var(--viewer-bg); border: 1px solid var(--line); touch-action: none; }
+  .canvas-box canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+  .canvas-box canvas:active { cursor: grabbing; }
+  .count { position: absolute; right: 10px; bottom: 8px; font-family: var(--mono); font-size: .7rem; color: #6b7684; pointer-events: none; }
+  .spinner { position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 3px solid #cfd6de; border-top-color: #0b7285; border-radius: 50%; animation: spin .9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; margin-top: 14px; color: var(--muted); font-size: .95rem; }
+  .toolbar .hint { font-family: var(--mono); font-size: .76rem; }
+  .toolbar .controls { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .toolbar label { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
+  .toolbar input[type="range"] { accent-color: var(--accent); width: 130px; }
+  .toolbar button { font-family: var(--body); font-weight: 600; font-size: .95rem; cursor: pointer; padding: 5px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+  .toolbar button:hover { border-color: var(--ink); }
+  .fineprint { margin-top: 12px; font-size: .9rem; color: var(--faint); }
+
+  /* bibtex */
+  .bib { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .bib pre { margin: 0; padding: 18px 20px; overflow-x: auto; font-family: var(--mono); font-size: .84rem; line-height: 1.65; color: var(--ink); }
+  .bib button { position: absolute; top: 10px; right: 10px; font-family: var(--body); font-weight: 600; cursor: pointer; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--ground); color: var(--ink); }
+
+  footer { padding-block: 32px 44px; color: var(--faint); font-size: .92rem; border-top: 1px solid var(--line); }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 920px) {
+    .overview-grid, .method-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
+    .steps li:nth-child(3) { padding-left: 0; border-left: 0; }
+    .viewers { grid-template-columns: 1fr; }
+    .canvas-box { height: 46vh; }
+    .cur-main { grid-template-columns: 1fr; }
+    .cur-legend ul { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 17px; }
+    .steps { grid-template-columns: 1fr; }
+    .steps li, .steps li + li { padding-left: 0; border-left: 0; }
+    .navlinks a:nth-child(n+3) { display: none; }
+    .scene-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">PanoSeg<span>3R</span></a>
+    <div class="navlinks">
+      <a href="#abstract">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#data">Data</a>
+      <a href="#demo">3D Viewer</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="graticule" id="graticule" aria-hidden="true" preserveAspectRatio="none"></svg>
+  <div class="wrap">
+    <h1 class="hero-name">PanoSeg<span>3R</span></h1>
+    <p class="hero-sub">Feed-Forward 3D Semantic Segmentation for Panoramic Images with an Automatic Data Curation Pipeline</p>
+    <div class="authors">
+      <span>Heechan Yoon</span>
+      <span>Dongki Jung</span>
+      <span>Phuc Nguyen</span>
+      <span>Ming Lin</span>
+      <span>Dinesh Manocha</span>
+    </div>
+    <div class="affil">University of Maryland, College Park</div>
+    <div class="buttons">
+      <!-- TODO: set the paper and code URLs -->
+      <a class="btn primary" id="paper-link" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+        Paper
+      </a>
+      <a class="btn" id="code-link" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        Code <span class="soon">soon</span>
+      </a>
+      <a class="btn" href="#demo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg>
+        3D Viewer
+      </a>
+    </div>
+  </div>
+</header>
+
+<section id="abstract">
+  <div class="wrap overview-grid">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <h2>Panoramas in, a labeled 3D scene out</h2>
+      <!-- TODO: replace with the paper abstract -->
+      <p class="abstract">
+        We present <b class="name">PanoSeg3R</b>, a feed-forward framework for 3D panoramic semantic segmentation.
+      </p>
+      <ul class="contribs">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Feed-forward 3D semantic segmentation from multiple panoramas, with no per-scene optimization.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>An automatic panorama data curation pipeline that combines off-the-shelf foundation models to generate reliable pseudo semantic labels, expanding the training data and improving zero-shot generalization.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>State-of-the-art panoramic 3D semantic segmentation, improving 3D mIoU by up to <b>16.02</b> on ScanNet++. The curated data adds up to <b>4.26</b> and <b>43.28</b> zero-shot mIoU on Stanford2D3D and ToF-360.</span></li>
+      </ul>
+    </div>
+    <figure>
+      <div class="plate"><a href="assets/figures/teaser.png" target="_blank"><img src="assets/figures/teaser.png" alt="Multi-view panoramas in, 3D semantic point clouds out: ground truth, ours, PanSt3R and IGGT." width="1600" height="1067"></a></div>
+      <figcaption>From the same multi-view panoramas, PanSt3R and IGGT lose geometry and labels. <b>Ours</b> stays close to GT.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <p class="eyebrow">Method</p>
+    <h2>Architecture</h2>
+    <div class="method-grid">
+      <figure>
+        <div class="plate"><a href="assets/figures/architecture.png" target="_blank"><img src="assets/figures/architecture.png" alt="Architecture: frozen Wid3R backbone, mask decoder with learnable queries, DPT plus image stem for mask features, SigLIP text embeddings, ray-based modules for 3D." width="1400" height="1400"></a></div>
+      </figure>
+      <div class="method-text">
+        <p>Multi-view equirectangular projection (ERP) images are processed by the pretrained <b>Wid3R</b> backbone to extract features.</p>
+        <p>These features are refined by a <b>query-based decoder</b>, while a <b>DPT head</b> produces dense feature maps. An <b>image stem</b> injects low-level features into the feature maps to complement the decoded representations.</p>
+        <p>We reconstruct 3D geometry through the <b>ray-based modules</b> and project the predicted semantic masks to obtain consistent 3D semantic segmentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="data">
+  <div class="wrap">
+    <p class="eyebrow">Data</p>
+    <h2>Automatic data curation</h2>
+    <p class="lede">Real panorama datasets rarely come with semantic labels. The pipeline labels unannotated Realsee3D and OmniScenes panoramas automatically.</p>
+    <figure>
+      <div class="plate"><a href="assets/figures/data_curation_pipeline.png" target="_blank"><img src="assets/figures/data_curation_pipeline.png" alt="Curation pipeline: preprocess, mask generation, mask aggregation, VLM-based filtering." width="2400" height="918" loading="lazy"></a></div>
+    </figure>
+    <ol class="steps">
+      <li><h3>Preprocess</h3><p>Each panorama is split into 5 perspective images and 15 crops.</p></li>
+      <li><h3>Mask generation</h3><p>SAM3 gives class-agnostic masks. PanSt3R gives coarse semantic masks.</p></li>
+      <li><h3>Mask aggregation</h3><p>IoU matches SAM3 masks with PanSt3R regions and gives each mask the corresponding label.</p></li>
+      <li><h3>VLM filtering</h3><p>A VLM keeps or removes each labeled mask, giving the final semantic panorama.</p></li>
+    </ol>
+    <div class="cur-shell" id="curation">
+      <div class="cur-top">
+        <div>
+          <h3 class="cur-title">Curated Panorama Segmentation Data</h3>
+          <p class="cur-sub">Pick a panorama. Hover over either image or a class to see where each label lands.</p>
+        </div>
+        <div class="seg" id="cur-filter" role="group" aria-label="Dataset">
+          <button type="button" id="cf-all" data-ds="all" class="active">All</button>
+          <button type="button" id="cf-rs" data-ds="Realsee3D">Realsee3D</button>
+          <button type="button" id="cf-os" data-ds="OmniScenes">OmniScenes</button>
+        </div>
+      </div>
+      <div class="cur-thumbs" id="cur-thumbs"></div>
+      <div class="cur-main">
+        <div class="cur-stage">
+          <div class="pano" id="pano-rgb">
+            <span class="pano-tag">Panorama</span>
+            <img id="cur-rgb" alt="Selected RGB panorama" width="1600" height="800">
+            <canvas id="cur-rgb-hl" width="1024" height="512" aria-hidden="true"></canvas>
+          </div>
+          <div class="pano" id="pano-seg">
+            <span class="pano-tag">Curated semantic label</span>
+            <canvas id="cur-seg" width="1024" height="512" aria-label="Curated semantic label map"></canvas>
+          </div>
+          <div class="cur-tip" id="cur-tip" hidden></div>
+        </div>
+        <aside class="cur-legend">
+          <div class="cur-legend-head"><span>Class</span><span>Pixels</span></div>
+          <ul id="cur-legend"></ul>
+          <p class="cur-meta mono" id="cur-meta"></p>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <p class="eyebrow">Interactive</p>
+    <h2>Explore the 3D results</h2>
+    <p class="lede">Pick a scene. The left viewer shows PanoSeg3R, the right one GT or a baseline. Both cameras move together.</p>
+    <div class="viewer-shell">
+      <div class="scene-row" id="scene-row"></div>
+      <div class="inputs-head"><span class="mono" id="inputs-label">Input panoramas</span></div>
+      <div class="inputs" id="inputs"></div>
+      <div class="viewers">
+        <div class="vpanel">
+          <div class="vhead"><span class="vlabel">PanoSeg3R (ours)</span></div>
+          <div class="canvas-box" id="box-left"><div class="spinner" id="spin-left" hidden></div><div class="count" id="count-left"></div></div>
+        </div>
+        <div class="vpanel">
+          <div class="vhead">
+            <div class="seg" id="method-seg" role="group" aria-label="Comparison">
+              <button type="button" id="m-gt" data-m="gt" class="active">GT</button>
+              <button type="button" id="m-panst3r" data-m="panst3r">PanSt3R</button>
+              <button type="button" id="m-iggt" data-m="iggt">IGGT</button>
+              <button type="button" id="m-uni3r" data-m="uni3r">Uni3R</button>
+            </div>
+          </div>
+          <div class="canvas-box" id="box-right"><div class="spinner" id="spin-right" hidden></div><div class="count" id="count-right"></div></div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <span class="hint">drag: rotate · right-drag: pan · scroll: zoom</span>
+        <div class="controls">
+          <label for="psize">Point size <input type="range" id="psize" min="0.005" max="0.06" step="0.0025" value="0.02"></label>
+          <button type="button" id="reset-view">Reset view</button>
+        </div>
+      </div>
+    </div>
+    <p class="fineprint">Point clouds are randomly downsampled to at most 150k points for the browser. All predictions are shown in the GT frame.</p>
+  </div>
+</section>
+
+<section id="bibtex">
+  <div class="wrap" style="max-width: 860px;">
+    <p class="eyebrow">Cite</p>
+    <h2>BibTeX</h2>
+    <div class="bib">
+      <button type="button" id="copy-bib">Copy</button>
+<!-- TODO: set venue / arXiv id -->
+<pre id="bib-text">@article{yoon2026panoseg3r,
+  title   = {PanoSeg3R: Feed-Forward 3D Semantic Segmentation for Panoramic Images
+             with an Automatic Data Curation Pipeline},
+  author  = {Yoon, Heechan and Jung, Dongki and Nguyen, Phuc and Lin, Ming and Manocha, Dinesh},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Built on <a href="https://jdk9405.github.io/Wid3R/">Wid3R</a>. Viewer uses three.js.</div>
+</footer>
+
+<script>
+  (function () {
+    var nav = document.getElementById('nav');
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 10); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Equirectangular graticule: 30° meridians and parallels over 360° × 180°.
+    var svg = document.getElementById('graticule');
+    var NS = 'http://www.w3.org/2000/svg';
+    svg.setAttribute('viewBox', '0 0 1440 720');
+    for (var lon = -180; lon <= 180; lon += 30) {
+      var x = (lon + 180) * 4;
+      var l = document.createElementNS(NS, 'line');
+      l.setAttribute('x1', x); l.setAttribute('x2', x); l.setAttribute('y1', 0); l.setAttribute('y2', 720);
+      svg.appendChild(l);
+      if (lon > -180 && lon < 180) {
+        var t = document.createElementNS(NS, 'text');
+        t.setAttribute('x', x + 4); t.setAttribute('y', 712); t.textContent = lon + '°';
+        svg.appendChild(t);
+      }
+    }
+    for (var lat = -60; lat <= 60; lat += 30) {
+      var y = (90 - lat) * 4;
+      var p = document.createElementNS(NS, 'line');
+      p.setAttribute('x1', 0); p.setAttribute('x2', 1440); p.setAttribute('y1', y); p.setAttribute('y2', y);
+      svg.appendChild(p);
+    }
+
+    var btn = document.getElementById('copy-bib');
+    btn.addEventListener('click', function () {
+      var text = document.getElementById('bib-text').textContent;
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+      }, function () {});
+    });
+  })();
+</script>
+
+<script>
+  // Curation viewer: label.png stores a per-scene class index in its red channel (0 = unlabeled).
+  (function () {
+    var W = 1024, H = 512;
+    var thumbs = document.getElementById('cur-thumbs');
+    var rgbImg = document.getElementById('cur-rgb');
+    var segCv = document.getElementById('cur-seg');
+    var hlCv = document.getElementById('cur-rgb-hl');
+    var tip = document.getElementById('cur-tip');
+    var legend = document.getElementById('cur-legend');
+    var meta = document.getElementById('cur-meta');
+    var segCtx = segCv.getContext('2d');
+    var hlCtx = hlCv.getContext('2d');
+    var scenes = [], cur = null, idx = null, rgbs = null, active = 0, pinned = 0, token = 0;
+    var labelCache = {};
+
+    function hexRgb(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
+
+    function loadLabel(src) {
+      if (labelCache[src]) return labelCache[src];
+      labelCache[src] = new Promise(function (res, rej) {
+        var im = new Image();
+        im.onload = function () {
+          var c = document.createElement('canvas'); c.width = W; c.height = H;
+          var x = c.getContext('2d'); x.drawImage(im, 0, 0, W, H);
+          var d = x.getImageData(0, 0, W, H).data, out = new Uint8Array(W * H);
+          for (var i = 0; i < out.length; i++) out[i] = d[4 * i];
+          res(out);
+        };
+        im.onerror = function () { delete labelCache[src]; rej(new Error('label ' + src)); };
+        im.src = src;
+      });
+      return labelCache[src];
+    }
+
+    // Seg view: the selected class keeps full colour, others fade toward grey.
+    function drawSeg() {
+      if (!idx) return;
+      var img = segCtx.createImageData(W, H), d = img.data;
+      for (var i = 0; i < idx.length; i++) {
+        var k = idx[i], o = 4 * i;
+        if (!k) { d[o] = 12; d[o + 1] = 17; d[o + 2] = 23; d[o + 3] = 255; continue; }
+        var c = rgbs[k];
+        if (active && k !== active) { d[o] = c[0] * .25 + 150; d[o + 1] = c[1] * .25 + 150; d[o + 2] = c[2] * .25 + 150; }
+        else { d[o] = c[0]; d[o + 1] = c[1]; d[o + 2] = c[2]; }
+        d[o + 3] = 255;
+      }
+      segCtx.putImageData(img, 0, 0);
+      // RGB view: tint the selected class, darken the rest.
+      hlCtx.clearRect(0, 0, W, H);
+      if (!active) return;
+      var h = hlCtx.createImageData(W, H), e = h.data, a = rgbs[active];
+      for (var j = 0; j < idx.length; j++) {
+        var p = 4 * j;
+        if (idx[j] === active) { e[p] = a[0]; e[p + 1] = a[1]; e[p + 2] = a[2]; e[p + 3] = 120; }
+        else { e[p + 3] = 150; }
+      }
+      hlCtx.putImageData(h, 0, 0);
+    }
+
+    function setActive(k) {
+      if (k === active) return;
+      active = k;
+      legend.querySelectorAll('button').forEach(function (b) { b.classList.toggle('on', +b.dataset.k === active); });
+      drawSeg();
+    }
+
+    function select(i) {
+      var s = scenes[i], my = ++token;
+      cur = s; active = 0; pinned = 0;
+      thumbs.querySelectorAll('.cur-thumb').forEach(function (b) { b.classList.toggle('active', b.dataset.i == i); });
+      rgbImg.src = s.rgb;
+      rgbs = [null].concat(s.classes.map(function (c) { return hexRgb(c.color); }));
+      legend.replaceChildren.apply(legend, s.classes.map(function (c, j) {
+        var li = document.createElement('li'), b = document.createElement('button');
+        b.type = 'button'; b.dataset.k = j + 1;
+        var sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = c.color;
+        var nm = document.createElement('span'); nm.textContent = c.name;
+        var pc = document.createElement('span'); pc.className = 'pct'; pc.textContent = (c.share * 100).toFixed(1) + '%';
+        b.append(sw, nm, pc);
+        b.addEventListener('mouseenter', function () { if (!pinned) setActive(j + 1); });
+        b.addEventListener('mouseleave', function () { if (!pinned) setActive(0); });
+        b.addEventListener('click', function () { pinned = pinned === j + 1 ? 0 : j + 1; setActive(pinned); });
+        li.appendChild(b); return li;
+      }));
+      meta.textContent = s.dataset + ' · ' + s.id.replace(/^(realsee3d|omniscenes)_/, '');
+      loadLabel(s.label).then(function (a) { if (my !== token) return; idx = a; drawSeg(); });
+    }
+
+    function onMove(ev) {
+      if (!idx) return;
+      var r = ev.currentTarget.getBoundingClientRect();
+      var x = Math.min(W - 1, Math.max(0, Math.floor((ev.clientX - r.left) / r.width * W)));
+      var y = Math.min(H - 1, Math.max(0, Math.floor((ev.clientY - r.top) / r.height * H)));
+      var k = idx[y * W + x];
+      var stage = document.querySelector('.cur-stage').getBoundingClientRect();
+      tip.style.left = (ev.clientX - stage.left) + 'px';
+      tip.style.top = (ev.clientY - stage.top) + 'px';
+      var c = k ? cur.classes[k - 1] : null;
+      tip.replaceChildren();
+      if (c) { var sw = document.createElement('i'); sw.style.background = c.color; tip.append(sw, c.name); }
+      else tip.append('unlabeled');
+      tip.hidden = false;
+      if (!pinned) setActive(k);
+    }
+    function onLeave() { tip.hidden = true; if (!pinned) setActive(0); }
+    ['pano-rgb', 'pano-seg'].forEach(function (id) {
+      var el = document.getElementById(id);
+      el.addEventListener('mousemove', onMove);
+      el.addEventListener('mouseleave', onLeave);
+    });
+
+    function renderThumbs(ds) {
+      thumbs.replaceChildren();
+      scenes.forEach(function (s, i) {
+        if (ds !== 'all' && s.dataset !== ds) return;
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'cur-thumb'; b.dataset.i = i; b.id = 'cur-' + s.id;
+        b.setAttribute('aria-label', s.dataset + ' panorama ' + (i + 1));
+        if (cur === s) b.classList.add('active');
+        var im = new Image(); im.src = s.rgb; im.alt = ''; im.loading = 'lazy';
+        var t = document.createElement('span'); t.textContent = s.dataset;
+        b.append(im, t);
+        b.addEventListener('click', function () { select(i); });
+        thumbs.appendChild(b);
+      });
+    }
+    document.getElementById('cur-filter').addEventListener('click', function (ev) {
+      var b = ev.target.closest('button[data-ds]');
+      if (!b) return;
+      document.querySelectorAll('#cur-filter button').forEach(function (x) { x.classList.toggle('active', x === b); });
+      renderThumbs(b.dataset.ds);
+      var first = thumbs.querySelector('.cur-thumb');
+      if (first && (b.dataset.ds !== 'all' && cur.dataset !== b.dataset.ds)) select(+first.dataset.i);
+    });
+
+    fetch('assets/curation/scenes.json').then(function (r) { return r.json(); }).then(function (list) {
+      scenes = list;
+      renderThumbs('all');
+      select(0);
+    });
+  })();
+</script>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+    }
+  }
+</script>
+<script type="module">
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+  const METHOD_LABEL = { gt: 'GT', panst3r: 'PanSt3R', iggt: 'IGGT', uni3r: 'Uni3R', ours: 'PanoSeg3R' };
+  const cache = new Map();
+  let scenes = [];
+  let scene = null;
+  let rightMethod = 'gt';
+  let pointSize = 0.02;
+
+  // One camera shared by both viewers keeps them in lockstep.
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.05, 500);
+  camera.up.set(0, 0, 1);
+
+  function makeViewer(side) {
+    const box = document.getElementById('box-' + side);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0xf1f3f6);
+    box.prepend(renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = false;
+    controls.screenSpacePanning = true;
+    return { box, renderer, scene: new THREE.Scene(), controls, points: null, token: 0,
+             spin: document.getElementById('spin-' + side), count: document.getElementById('count-' + side) };
+  }
+  const left = makeViewer('left');
+  const right = makeViewer('right');
+  // Share one target vector so a pan in either viewer moves both.
+  right.controls.target = left.controls.target;
+  const viewers = [left, right];
+
+  function resize() {
+    for (const v of viewers) v.renderer.setSize(v.box.clientWidth, v.box.clientHeight, false);
+    camera.aspect = left.box.clientWidth / Math.max(1, left.box.clientHeight);
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(left.box);
+
+  // .bin record: int16 x,y,z in millimetres + uint8 r,g,b (9 bytes/point).
+  function loadCloud(path) {
+    if (cache.has(path)) return cache.get(path);
+    const p = fetch(path).then(r => {
+      if (!r.ok) throw new Error(path + ': HTTP ' + r.status);
+      return r.arrayBuffer();
+    }).then(buf => {
+      const n = Math.floor(buf.byteLength / 9);
+      const dv = new DataView(buf);
+      const pos = new Float32Array(n * 3);
+      const col = new Uint8Array(n * 3);
+      for (let i = 0, o = 0; i < n; i++, o += 9) {
+        pos[3 * i] = dv.getInt16(o, true) / 1000;
+        pos[3 * i + 1] = dv.getInt16(o + 2, true) / 1000;
+        pos[3 * i + 2] = dv.getInt16(o + 4, true) / 1000;
+        col[3 * i] = dv.getUint8(o + 6);
+        col[3 * i + 1] = dv.getUint8(o + 7);
+        col[3 * i + 2] = dv.getUint8(o + 8);
+      }
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      g.setAttribute('color', new THREE.BufferAttribute(col, 3, true));
+      return g;
+    });
+    cache.set(path, p);
+    p.catch(() => cache.delete(path));
+    return p;
+  }
+
+  async function show(v, method) {
+    const token = ++v.token;
+    v.spin.hidden = false;
+    try {
+      const geom = await loadCloud(scene.methods[method].path);
+      if (token !== v.token) return;
+      if (v.points) { v.scene.remove(v.points); v.points.material.dispose(); }
+      v.points = new THREE.Points(geom, new THREE.PointsMaterial({ size: pointSize, vertexColors: true, sizeAttenuation: true }));
+      v.scene.add(v.points);
+      v.count.textContent = METHOD_LABEL[method] + ' · ' + scene.methods[method].points.toLocaleString() + ' pts';
+    } catch (e) {
+      console.error(e);
+      if (token === v.token) v.count.textContent = 'Could not load ' + METHOD_LABEL[method];
+    } finally {
+      if (token === v.token) v.spin.hidden = true;
+    }
+  }
+
+  function resetView() {
+    const e = scene.extent;
+    left.controls.target.set(0, 0, 0);
+    camera.position.set(-0.55 * e, -0.85 * e, 0.95 * e);
+    camera.lookAt(0, 0, 0);
+    for (const v of viewers) { v.controls.minDistance = 0.2; v.controls.maxDistance = 4 * e; v.controls.update(); }
+  }
+
+  function selectScene(i) {
+    scene = scenes[i];
+    document.querySelectorAll('.scene-btn').forEach((b, j) => b.classList.toggle('active', j === i));
+    document.getElementById('inputs').replaceChildren(...scene.views.map((src, k) => {
+      const img = new Image(); img.src = src; img.alt = 'Input panorama ' + (k + 1); img.loading = 'lazy';
+      img.width = 152; img.height = 76; return img;
+    }));
+    document.getElementById('inputs-label').textContent = scene.dataset + ' · ' + scene.views.length + ' input panoramas';
+    resetView();
+    show(left, 'ours');
+    show(right, rightMethod);
+  }
+
+  document.getElementById('method-seg').addEventListener('click', ev => {
+    const b = ev.target.closest('button[data-m]');
+    if (!b || !scene) return;
+    rightMethod = b.dataset.m;
+    document.querySelectorAll('#method-seg button').forEach(x => x.classList.toggle('active', x === b));
+    show(right, rightMethod);
+  });
+  document.getElementById('psize').addEventListener('input', ev => {
+    pointSize = parseFloat(ev.target.value);
+    for (const v of viewers) if (v.points) v.points.material.size = pointSize;
+  });
+  document.getElementById('reset-view').addEventListener('click', () => scene && resetView());
+
+  function animate() {
+    requestAnimationFrame(animate);
+    for (const v of viewers) v.renderer.render(v.scene, camera);
+  }
+
+  fetch('assets/pcd/scenes.json').then(r => r.json()).then(list => {
+    scenes = list;
+    const row = document.getElementById('scene-row');
+    list.forEach((s, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'scene-btn'; b.id = 'scene-' + s.id;
+      b.setAttribute('aria-label', s.dataset + ' scene ' + (i + 1));
+      const img = new Image(); img.src = s.views[0]; img.alt = ''; img.loading = 'lazy';
+      const tag = document.createElement('span'); tag.textContent = s.dataset;
+      b.append(img, tag);
+      b.addEventListener('click', () => selectScene(i));
+      row.appendChild(b);
+    });
+    resize();
+    selectScene(0);
+    animate();
+  });
+</script>
+</body>
+</html>

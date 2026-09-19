@@ -115,6 +115,19 @@ Computer Graphics: Differentiable Rendering and Simulation
 <div align="left"><b>Publications</b></div> <br/>
 </font>
 
+<table style="background-color:#F1F7FC">
+  <tr>
+    <td style="text-align:left;vertical-align:top;padding-top:1%;padding-left:1%;" width="25%">    <img src="/images/publications/panoseg3r_teaser.png" align="left" width="250" style="cursor:pointer" onclick="window.open(this.src)"/>    </td>
+    <td width="70%">    <a href="/PanoSeg3R/"> 
+      <strong>PanoSeg3R: Feed-Forward 3D Semantic Segmentation for Panoramic Images with an Automatic Data Curation Pipeline</strong> </a> <br/> 
+      <strong>Heechan Yoon</strong>, Dongki Jung, Phuc Nguyen, Ming Lin, Dinesh Manocha<br/>
+      <a class="links" href="/PanoSeg3R/"> Project Page </a>
+      <br>
+      We introduce a feed-forward framework for panoramic 3D semantic segmentation and a data-curation pipeline for indoor semantic panorama datasets.
+    </td> 
+  </tr>
+</table>
+
 
 <table style="background-color:#F1F7FC">
   <tr>

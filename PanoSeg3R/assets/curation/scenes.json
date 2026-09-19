@@ -1,0 +1,1147 @@
+[
+ {
+  "id": "realsee3d_scene_00050_1753261955",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00050_1753261955/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00050_1753261955/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.3698
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.0932
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0895
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0508
+   },
+   {
+    "name": "picture",
+    "color": "#fff1cc",
+    "share": 0.0359
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0019
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0018
+   },
+   {
+    "name": "bed",
+    "color": "#cce3ff",
+    "share": 0.0015
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00066_1762147611",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00066_1762147611/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00066_1762147611/label.png",
+  "edited": true,
+  "classes": [
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.1782
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.1488
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.1108
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0788
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.067
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0456
+   },
+   {
+    "name": "bed",
+    "color": "#cce3ff",
+    "share": 0.0088
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0017
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.0016
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0013
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00083_1755740873",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00083_1755740873/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00083_1755740873/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.301
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0955
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.094
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0917
+   },
+   {
+    "name": "picture",
+    "color": "#fff1cc",
+    "share": 0.0236
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0195
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0024
+   },
+   {
+    "name": "bed",
+    "color": "#cce3ff",
+    "share": 0.0021
+   },
+   {
+    "name": "shelf",
+    "color": "#b5e271",
+    "share": 0.0017
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0015
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.0014
+   },
+   {
+    "name": "sink",
+    "color": "#c6638b",
+    "share": 0.0011
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00116_1751960067",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00116_1751960067/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00116_1751960067/label.png",
+  "edited": true,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.3075
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0656
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.0483
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0461
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0351
+   },
+   {
+    "name": "shelf",
+    "color": "#b5e271",
+    "share": 0.0258
+   },
+   {
+    "name": "box",
+    "color": "#d47fff",
+    "share": 0.0141
+   },
+   {
+    "name": "bottle",
+    "color": "#b2ffd8",
+    "share": 0.0055
+   },
+   {
+    "name": "shoes",
+    "color": "#c6b39f",
+    "share": 0.0034
+   },
+   {
+    "name": "suitcase",
+    "color": "#c695b6",
+    "share": 0.0034
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.0019
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00121_1753325619",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00121_1753325619/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00121_1753325619/label.png",
+  "edited": true,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.387
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0926
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.0863
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0669
+   },
+   {
+    "name": "bed",
+    "color": "#cce3ff",
+    "share": 0.0029
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.0024
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0019
+   },
+   {
+    "name": "pillow",
+    "color": "#63c66a",
+    "share": 0.0014
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0011
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00142_1757212736",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00142_1757212736/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00142_1757212736/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.3718
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.1005
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0948
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0296
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0124
+   },
+   {
+    "name": "bed",
+    "color": "#cce3ff",
+    "share": 0.002
+   },
+   {
+    "name": "blanket",
+    "color": "#ff99cc",
+    "share": 0.002
+   },
+   {
+    "name": "pillow",
+    "color": "#63c66a",
+    "share": 0.0014
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00175_1756367189",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00175_1756367189/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00175_1756367189/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.3512
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0813
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0781
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.0751
+   },
+   {
+    "name": "kitchen counter",
+    "color": "#7fffb6",
+    "share": 0.0237
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0094
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0056
+   },
+   {
+    "name": "kitchen cabinet",
+    "color": "#6abcd4",
+    "share": 0.004
+   },
+   {
+    "name": "sofa",
+    "color": "#ff7f7f",
+    "share": 0.0037
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0024
+   },
+   {
+    "name": "pot",
+    "color": "#c6c68b",
+    "share": 0.0023
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.002
+   },
+   {
+    "name": "picture",
+    "color": "#fff1cc",
+    "share": 0.0017
+   },
+   {
+    "name": "jar",
+    "color": "#ffcce5",
+    "share": 0.0012
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00197_1759026167",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00197_1759026167/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00197_1759026167/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.2942
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0947
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0628
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.0611
+   },
+   {
+    "name": "sink",
+    "color": "#c6638b",
+    "share": 0.0528
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0271
+   },
+   {
+    "name": "picture",
+    "color": "#fff1cc",
+    "share": 0.0094
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0057
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.005
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00314_1753328166",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00314_1753328166/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00314_1753328166/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.1997
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.1331
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.1321
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0905
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0338
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0324
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.0074
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0065
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0048
+   },
+   {
+    "name": "sofa",
+    "color": "#ff7f7f",
+    "share": 0.0014
+   }
+  ]
+ },
+ {
+  "id": "realsee3d_scene_00474_1753351216",
+  "dataset": "Realsee3D",
+  "rgb": "assets/curation/realsee3d/scene_00474_1753351216/rgb.jpg",
+  "label": "assets/curation/realsee3d/scene_00474_1753351216/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.2312
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.089
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.0797
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0748
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.057
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.018
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0174
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_handheld_pano_handheld_lounge_1_scene_1_seq_74",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/handheld_pano_handheld_lounge_1_scene_1_seq_74/rgb.jpg",
+  "label": "assets/curation/omniscenes/handheld_pano_handheld_lounge_1_scene_1_seq_74/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.2783
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.2327
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.0642
+   },
+   {
+    "name": "storage cabinet",
+    "color": "#a177c6",
+    "share": 0.0227
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0128
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0039
+   },
+   {
+    "name": "sofa",
+    "color": "#ff7f7f",
+    "share": 0.0037
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.0023
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0019
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_handheld_pano_handheld_lounge_1_scene_1_seq_82",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/handheld_pano_handheld_lounge_1_scene_1_seq_82/rgb.jpg",
+  "label": "assets/curation/omniscenes/handheld_pano_handheld_lounge_1_scene_1_seq_82/label.png",
+  "edited": true,
+  "classes": [
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.2624
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.236
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.0499
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.0193
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0112
+   },
+   {
+    "name": "storage cabinet",
+    "color": "#a177c6",
+    "share": 0.0073
+   },
+   {
+    "name": "sofa",
+    "color": "#ff7f7f",
+    "share": 0.0059
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0053
+   },
+   {
+    "name": "poster",
+    "color": "#9fc6b9",
+    "share": 0.0032
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0025
+   },
+   {
+    "name": "tv",
+    "color": "#63c6ac",
+    "share": 0.0011
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_handheld_pano_handheld_room_4_scene_1_seq_9",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/handheld_pano_handheld_room_4_scene_1_seq_9/rgb.jpg",
+  "label": "assets/curation/omniscenes/handheld_pano_handheld_room_4_scene_1_seq_9/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.1498
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.1388
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.1106
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.061
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0213
+   },
+   {
+    "name": "bed",
+    "color": "#cce3ff",
+    "share": 0.0041
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0038
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0025
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.0019
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_turtlebot_pano_turtlebot_hallway_2_scene_1_seq_105",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/turtlebot_pano_turtlebot_hallway_2_scene_1_seq_105/rgb.jpg",
+  "label": "assets/curation/omniscenes/turtlebot_pano_turtlebot_hallway_2_scene_1_seq_105/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.2562
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.2499
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.1264
+   },
+   {
+    "name": "sofa",
+    "color": "#ff7f7f",
+    "share": 0.0052
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0046
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0028
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_turtlebot_pano_turtlebot_hallway_2_scene_1_seq_12",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/turtlebot_pano_turtlebot_hallway_2_scene_1_seq_12/rgb.jpg",
+  "label": "assets/curation/omniscenes/turtlebot_pano_turtlebot_hallway_2_scene_1_seq_12/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.1965
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.1865
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.1831
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0288
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.0072
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0043
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0034
+   },
+   {
+    "name": "sofa",
+    "color": "#ff7f7f",
+    "share": 0.0033
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0014
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_turtlebot_pano_turtlebot_lobby_1_scene_1_seq_110",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/turtlebot_pano_turtlebot_lobby_1_scene_1_seq_110/rgb.jpg",
+  "label": "assets/curation/omniscenes/turtlebot_pano_turtlebot_lobby_1_scene_1_seq_110/label.png",
+  "edited": true,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.3112
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.1318
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.1247
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0269
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0085
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0035
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.0012
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_turtlebot_pano_turtlebot_lobby_1_scene_1_seq_115",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/turtlebot_pano_turtlebot_lobby_1_scene_1_seq_115/rgb.jpg",
+  "label": "assets/curation/omniscenes/turtlebot_pano_turtlebot_lobby_1_scene_1_seq_115/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.2833
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.1369
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.1077
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.026
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0123
+   },
+   {
+    "name": "poster",
+    "color": "#9fc6b9",
+    "share": 0.0113
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0113
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0043
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0041
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.002
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_turtlebot_pano_turtlebot_pyebaekRoom_1_scene_1_seq_3",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/turtlebot_pano_turtlebot_pyebaekRoom_1_scene_1_seq_3/rgb.jpg",
+  "label": "assets/curation/omniscenes/turtlebot_pano_turtlebot_pyebaekRoom_1_scene_1_seq_3/label.png",
+  "edited": true,
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.2966
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.1265
+   },
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.0985
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0397
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.0146
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0068
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0028
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0024
+   },
+   {
+    "name": "pillow",
+    "color": "#63c66a",
+    "share": 0.0021
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_turtlebot_pano_turtlebot_room_7_scene_1_seq_192",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/turtlebot_pano_turtlebot_room_7_scene_1_seq_192/rgb.jpg",
+  "label": "assets/curation/omniscenes/turtlebot_pano_turtlebot_room_7_scene_1_seq_192/label.png",
+  "edited": false,
+  "classes": [
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.1871
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.1628
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.1549
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0301
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.0287
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0177
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0131
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.0114
+   },
+   {
+    "name": "cabinet",
+    "color": "#7797c6",
+    "share": 0.0087
+   },
+   {
+    "name": "whiteboard",
+    "color": "#ffa57f",
+    "share": 0.0038
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.0028
+   },
+   {
+    "name": "board",
+    "color": "#e8ffb2",
+    "share": 0.0015
+   }
+  ]
+ },
+ {
+  "id": "omniscenes_turtlebot_pano_turtlebot_room_8_scene_1_seq_210",
+  "dataset": "OmniScenes",
+  "rgb": "assets/curation/omniscenes/turtlebot_pano_turtlebot_room_8_scene_1_seq_210/rgb.jpg",
+  "label": "assets/curation/omniscenes/turtlebot_pano_turtlebot_room_8_scene_1_seq_210/label.png",
+  "edited": true,
+  "classes": [
+   {
+    "name": "ceiling",
+    "color": "#7fff7f",
+    "share": 0.16
+   },
+   {
+    "name": "door",
+    "color": "#ffe97f",
+    "share": 0.1208
+   },
+   {
+    "name": "floor",
+    "color": "#7f7fff",
+    "share": 0.108
+   },
+   {
+    "name": "wall",
+    "color": "#f0a8a8",
+    "share": 0.0808
+   },
+   {
+    "name": "doorframe",
+    "color": "#7ffaff",
+    "share": 0.0458
+   },
+   {
+    "name": "chair",
+    "color": "#91c68b",
+    "share": 0.0185
+   },
+   {
+    "name": "table",
+    "color": "#ff7fdd",
+    "share": 0.0136
+   },
+   {
+    "name": "bed",
+    "color": "#cce3ff",
+    "share": 0.012
+   },
+   {
+    "name": "office chair",
+    "color": "#7fa1ff",
+    "share": 0.0092
+   },
+   {
+    "name": "board",
+    "color": "#e8ffb2",
+    "share": 0.0053
+   },
+   {
+    "name": "painting",
+    "color": "#eebfff",
+    "share": 0.0043
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#c69f63",
+    "share": 0.003
+   },
+   {
+    "name": "pillow",
+    "color": "#63c66a",
+    "share": 0.002
+   }
+  ]
+ }
+]
