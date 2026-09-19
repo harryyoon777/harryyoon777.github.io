@@ -128,9 +128,9 @@ author:
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/heechan-yoon-2657a4304/"
-    - label: "CV"
-      icon: "fas fa-fw fa-file-pdf"
-      url: "/assets/files/Heechan_Yoon_CV.pdf"
+    # - label: "CV"
+    #   icon: "fas fa-fw fa-file-pdf"
+    #   url: "/assets/files/Heechan_Yoon_CV.pdf"
 
 # Site Footer
 footer:
