@@ -115,7 +115,8 @@
     max-width: 30em; margin: 18px auto 0; text-wrap: balance; color: var(--ink);
   }
   .authors { margin-top: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px; font-size: 1.12rem; font-weight: 600; }
-  .authors span { white-space: nowrap; }
+  .authors a { white-space: nowrap; color: var(--ink); text-decoration: none; border-bottom: 1.5px solid transparent; transition: color .2s, border-color .2s; }
+  .authors a:hover { color: var(--accent); border-bottom-color: var(--accent); }
   .affil { margin-top: 6px; color: var(--muted); }
   .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
   .btn {
@@ -299,11 +300,11 @@
     <h1 class="hero-name">PanoSeg<span>3R</span></h1>
     <p class="hero-sub">Feed-Forward 3D Semantic Segmentation for Panoramic Images with an Automatic Data Curation Pipeline</p>
     <div class="authors">
-      <span>Heechan Yoon</span>
-      <span>Dongki Jung</span>
-      <span>Phuc Nguyen</span>
-      <span>Ming Lin</span>
-      <span>Dinesh Manocha</span>
+      <a href="https://harryyoon777.github.io/" target="_blank" rel="noopener noreferrer">Heechan Yoon</a>
+      <a href="https://jdk9405.github.io/" target="_blank" rel="noopener noreferrer">Dongki Jung</a>
+      <a href="https://phucnda.github.io/" target="_blank" rel="noopener noreferrer">Phuc Nguyen</a>
+      <a href="https://www.cs.umd.edu/~lin/" target="_blank" rel="noopener noreferrer">Ming Lin</a>
+      <a href="https://scholar.google.com/citations?user=Nqawxa0AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Dinesh Manocha</a>
     </div>
     <div class="affil">University of Maryland, College Park</div>
     <div class="buttons">
