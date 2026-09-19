@@ -121,7 +121,7 @@ Computer Vision and Robotics
     <td width="70%">
       <strong>PanoSeg3R: Feed-Forward 3D Semantic Segmentation for Panoramic Images with an Automatic Data Curation Pipeline</strong> <br/> 
       <strong>Heechan Yoon</strong>, Dongki Jung, Phuc Nguyen, Ming Lin, Dinesh Manocha<br/>
-      <a href="/publications/PanoSeg3R/">[Project]</a>
+      <a href="/PanoSeg3R/">[Project]</a>
       <br>
       We present PanoSeg3R, a feed-forward framework for 3D panoramic semantic segmentation.
     </td> 
