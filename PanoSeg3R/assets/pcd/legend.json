@@ -1,0 +1,1909 @@
+{
+ "scannetpp_0d2ee665be_case0": {
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "jacket",
+    "color": "#67b21a"
+   },
+   {
+    "name": "kitchen cabinet",
+    "color": "#c0ff26"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "box",
+    "color": "#b21a80"
+   },
+   {
+    "name": "shelf",
+    "color": "#8926ff"
+   },
+   {
+    "name": "kitchen counter",
+    "color": "#b2261a"
+   },
+   {
+    "name": "cabinet",
+    "color": "#2fff26"
+   },
+   {
+    "name": "office chair",
+    "color": "#1ab266"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "pillow",
+    "color": "#26ff2e"
+   },
+   {
+    "name": "bed",
+    "color": "#b2591a"
+   },
+   {
+    "name": "microwave",
+    "color": "#9a26ff"
+   },
+   {
+    "name": "blanket",
+    "color": "#fff526"
+   },
+   {
+    "name": "backpack",
+    "color": "#9ab21a"
+   },
+   {
+    "name": "monitor",
+    "color": "#b28c1a"
+   },
+   {
+    "name": "towel",
+    "color": "#b21a41"
+   },
+   {
+    "name": "bag",
+    "color": "#ffac26"
+   },
+   {
+    "name": "laptop",
+    "color": "#8b1ab2"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "trash can",
+    "color": "#34b21a"
+   },
+   {
+    "name": "book",
+    "color": "#ff268a"
+   },
+   {
+    "name": "picture",
+    "color": "#4c1ab2"
+   },
+   {
+    "name": "paper",
+    "color": "#66ff26"
+   },
+   {
+    "name": "pan",
+    "color": "#1ab24b"
+   },
+   {
+    "name": "keyboard",
+    "color": "#1ab272"
+   },
+   {
+    "name": "kettle",
+    "color": "#b21a35"
+   },
+   {
+    "name": "cup",
+    "color": "#2643ff"
+   },
+   {
+    "name": "cutting board",
+    "color": "#55ff26"
+   },
+   {
+    "name": "bottle",
+    "color": "#afff26"
+   },
+   {
+    "name": "toilet paper",
+    "color": "#b21a68"
+   },
+   {
+    "name": "mouse",
+    "color": "#251ab2"
+   },
+   {
+    "name": "bookshelf",
+    "color": "#ff5326"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   },
+   {
+    "name": "curtain",
+    "color": "#26adff"
+   },
+   {
+    "name": "sink",
+    "color": "#1ab2a5"
+   },
+   {
+    "name": "cushion",
+    "color": "#26ffd0"
+   },
+   {
+    "name": "doorframe",
+    "color": "#1ab233"
+   },
+   {
+    "name": "cloth",
+    "color": "#1a81b2"
+   },
+   {
+    "name": "shoes",
+    "color": "#ff2630"
+   },
+   {
+    "name": "basket",
+    "color": "#b2651a"
+   },
+   {
+    "name": "refrigerator",
+    "color": "#2654ff"
+   },
+   {
+    "name": "light switch",
+    "color": "#ff26c1"
+   },
+   {
+    "name": "window frame",
+    "color": "#26f6ff"
+   },
+   {
+    "name": "board",
+    "color": "#1ab23f"
+   },
+   {
+    "name": "smoke detector",
+    "color": "#268bff"
+   },
+   {
+    "name": "suitcase",
+    "color": "#269cff"
+   },
+   {
+    "name": "table lamp",
+    "color": "#ffbd26"
+   },
+   {
+    "name": "tv",
+    "color": "#7f1ab2"
+   }
+  ],
+  "share": {
+   "ours": {
+    "cloth": 0.0005,
+    "doorframe": 0.001,
+    "office chair": 0.0089,
+    "keyboard": 0.002,
+    "table": 0.0104,
+    "sink": 0.0015,
+    "refrigerator": 0.0002,
+    "wall": 0.4329,
+    "curtain": 0.0038,
+    "window frame": 0.0001,
+    "pillow": 0.0045,
+    "cushion": 0.0012,
+    "cabinet": 0.0111,
+    "trash can": 0.0019,
+    "paper": 0.0008,
+    "jacket": 0.0681,
+    "ceiling": 0.0109,
+    "window": 0.0238,
+    "laptop": 0.0007,
+    "microwave": 0.008,
+    "backpack": 0.0031,
+    "chair": 0.0096,
+    "towel": 0.0,
+    "box": 0.0116,
+    "kitchen counter": 0.0098,
+    "bed": 0.0112,
+    "basket": 0.0002,
+    "monitor": 0.0053,
+    "kitchen cabinet": 0.0892,
+    "shoes": 0.0005,
+    "book": 0.0003,
+    "light switch": 0.0001,
+    "floor": 0.1639,
+    "bookshelf": 0.0357,
+    "door": 0.0642,
+    "bag": 0.0017,
+    "blanket": 0.0012
+   },
+   "gt": {
+    "pan": 0.0013,
+    "office chair": 0.0102,
+    "keyboard": 0.0011,
+    "table": 0.0097,
+    "mouse": 0.0001,
+    "cup": 0.0006,
+    "wall": 0.5219,
+    "smoke detector": 0.0,
+    "pillow": 0.0096,
+    "cabinet": 0.0117,
+    "trash can": 0.002,
+    "picture": 0.0016,
+    "cutting board": 0.0006,
+    "paper": 0.0015,
+    "jacket": 0.0677,
+    "window": 0.0249,
+    "shelf": 0.0201,
+    "laptop": 0.0035,
+    "microwave": 0.0064,
+    "backpack": 0.005,
+    "chair": 0.002,
+    "bottle": 0.0004,
+    "kettle": 0.0007,
+    "towel": 0.0044,
+    "toilet paper": 0.0003,
+    "box": 0.0219,
+    "kitchen counter": 0.012,
+    "bed": 0.0083,
+    "monitor": 0.0045,
+    "kitchen cabinet": 0.0379,
+    "book": 0.0018,
+    "floor": 0.1621,
+    "door": 0.0336,
+    "bag": 0.0043,
+    "blanket": 0.0062
+   },
+   "panst3r": {
+    "cloth": 0.0,
+    "doorframe": 0.0003,
+    "board": 0.0001,
+    "office chair": 0.012,
+    "keyboard": 0.0016,
+    "table": 0.0088,
+    "mouse": 0.0007,
+    "cup": 0.0007,
+    "wall": 0.3255,
+    "suitcase": 0.0033,
+    "pillow": 0.0027,
+    "cushion": 0.0071,
+    "cabinet": 0.1041,
+    "picture": 0.0006,
+    "jacket": 0.0586,
+    "ceiling": 0.0,
+    "window": 0.033,
+    "shelf": 0.0274,
+    "laptop": 0.0036,
+    "microwave": 0.0091,
+    "backpack": 0.0048,
+    "chair": 0.0009,
+    "towel": 0.0029,
+    "box": 0.0142,
+    "kitchen counter": 0.0055,
+    "bed": 0.012,
+    "basket": 0.0006,
+    "monitor": 0.0058,
+    "kitchen cabinet": 0.0238,
+    "light switch": 0.0016,
+    "floor": 0.1725,
+    "door": 0.0566,
+    "bag": 0.0012,
+    "table lamp": 0.0003,
+    "blanket": 0.0035
+   },
+   "iggt": {
+    "table": 0.013,
+    "refrigerator": 0.0035,
+    "wall": 0.068,
+    "cabinet": 0.0,
+    "picture": 0.543,
+    "paper": 0.0037,
+    "ceiling": 0.0037,
+    "window": 0.0458,
+    "tv": 0.0138,
+    "shelf": 0.0224,
+    "chair": 0.0274,
+    "towel": 0.0003,
+    "box": 0.0055,
+    "bed": 0.0087,
+    "floor": 0.2034,
+    "door": 0.0377
+   },
+   "uni3r": {
+    "table": 0.0096,
+    "refrigerator": 0.0052,
+    "wall": 0.2835,
+    "cabinet": 0.0314,
+    "picture": 0.3114,
+    "ceiling": 0.0319,
+    "window": 0.0308,
+    "tv": 0.0015,
+    "shelf": 0.0117,
+    "microwave": 0.0059,
+    "chair": 0.0073,
+    "bed": 0.0449,
+    "floor": 0.2238,
+    "door": 0.0011
+   }
+  }
+ },
+ "scannetpp_27dd4da69e_case0": {
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "doorframe",
+    "color": "#1ab233"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "picture",
+    "color": "#4c1ab2"
+   },
+   {
+    "name": "kitchen cabinet",
+    "color": "#c0ff26"
+   },
+   {
+    "name": "refrigerator",
+    "color": "#2654ff"
+   },
+   {
+    "name": "curtain",
+    "color": "#26adff"
+   },
+   {
+    "name": "cabinet",
+    "color": "#2fff26"
+   },
+   {
+    "name": "backpack",
+    "color": "#9ab21a"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "suitcase",
+    "color": "#269cff"
+   },
+   {
+    "name": "bed",
+    "color": "#b2591a"
+   },
+   {
+    "name": "trash can",
+    "color": "#34b21a"
+   },
+   {
+    "name": "shelf",
+    "color": "#8926ff"
+   },
+   {
+    "name": "microwave",
+    "color": "#9a26ff"
+   },
+   {
+    "name": "paper",
+    "color": "#66ff26"
+   },
+   {
+    "name": "cloth",
+    "color": "#1a81b2"
+   },
+   {
+    "name": "sofa",
+    "color": "#b21ab2"
+   },
+   {
+    "name": "bag",
+    "color": "#ffac26"
+   },
+   {
+    "name": "towel",
+    "color": "#b21a41"
+   },
+   {
+    "name": "sink",
+    "color": "#1ab2a5"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   },
+   {
+    "name": "box",
+    "color": "#b21a80"
+   },
+   {
+    "name": "crate",
+    "color": "#e226ff"
+   },
+   {
+    "name": "pan",
+    "color": "#1ab24b"
+   },
+   {
+    "name": "paper towel",
+    "color": "#26d4ff"
+   },
+   {
+    "name": "book",
+    "color": "#ff268a"
+   },
+   {
+    "name": "tv",
+    "color": "#7f1ab2"
+   },
+   {
+    "name": "cutting board",
+    "color": "#55ff26"
+   },
+   {
+    "name": "light switch",
+    "color": "#ff26c1"
+   },
+   {
+    "name": "windowsill",
+    "color": "#26ffbf"
+   },
+   {
+    "name": "cup",
+    "color": "#2643ff"
+   },
+   {
+    "name": "telephone",
+    "color": "#28b21a"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "shoes",
+    "color": "#ff2630"
+   },
+   {
+    "name": "basket",
+    "color": "#b2651a"
+   },
+   {
+    "name": "jar",
+    "color": "#1a42b2"
+   },
+   {
+    "name": "laptop",
+    "color": "#8b1ab2"
+   },
+   {
+    "name": "soap dispenser",
+    "color": "#9eff26"
+   },
+   {
+    "name": "tissue box",
+    "color": "#b2711a"
+   },
+   {
+    "name": "painting",
+    "color": "#b2981a"
+   },
+   {
+    "name": "kitchen counter",
+    "color": "#b2261a"
+   },
+   {
+    "name": "shoe rack",
+    "color": "#5126ff"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "blanket",
+    "color": "#fff526"
+   },
+   {
+    "name": "cushion",
+    "color": "#26ffd0"
+   },
+   {
+    "name": "plant",
+    "color": "#1a8db2"
+   },
+   {
+    "name": "office chair",
+    "color": "#1ab266"
+   },
+   {
+    "name": "bottle",
+    "color": "#afff26"
+   },
+   {
+    "name": "bowl",
+    "color": "#26ffe1"
+   },
+   {
+    "name": "kettle",
+    "color": "#b21a35"
+   },
+   {
+    "name": "monitor",
+    "color": "#b28c1a"
+   },
+   {
+    "name": "pillow",
+    "color": "#26ff2e"
+   },
+   {
+    "name": "power strip",
+    "color": "#f326ff"
+   },
+   {
+    "name": "slippers",
+    "color": "#1ab27e"
+   },
+   {
+    "name": "socket",
+    "color": "#1a4eb2"
+   },
+   {
+    "name": "window frame",
+    "color": "#26f6ff"
+   }
+  ],
+  "share": {
+   "ours": {
+    "cloth": 0.0013,
+    "plant": 0.0002,
+    "doorframe": 0.0807,
+    "office chair": 0.0001,
+    "slippers": 0.0,
+    "table": 0.0006,
+    "sink": 0.001,
+    "wall": 0.5999,
+    "suitcase": 0.0021,
+    "curtain": 0.0165,
+    "window frame": 0.0,
+    "cushion": 0.0002,
+    "cabinet": 0.0108,
+    "trash can": 0.001,
+    "picture": 0.0064,
+    "shoe rack": 0.0009,
+    "ceiling": 0.0016,
+    "window": 0.0028,
+    "tv": 0.0003,
+    "shelf": 0.0001,
+    "microwave": 0.0018,
+    "backpack": 0.0014,
+    "chair": 0.0009,
+    "box": 0.0002,
+    "kitchen counter": 0.001,
+    "bed": 0.0005,
+    "basket": 0.0002,
+    "painting": 0.0216,
+    "kitchen cabinet": 0.059,
+    "shoes": 0.0034,
+    "book": 0.0003,
+    "floor": 0.1282,
+    "door": 0.0533,
+    "bag": 0.0014,
+    "blanket": 0.0002
+   },
+   "gt": {
+    "jar": 0.0001,
+    "socket": 0.0,
+    "cloth": 0.002,
+    "doorframe": 0.0985,
+    "pan": 0.0007,
+    "sink": 0.0012,
+    "cup": 0.0003,
+    "refrigerator": 0.0253,
+    "wall": 0.564,
+    "suitcase": 0.0055,
+    "curtain": 0.0162,
+    "paper towel": 0.0005,
+    "window frame": 0.0,
+    "windowsill": 0.0004,
+    "telephone": 0.0003,
+    "cabinet": 0.0124,
+    "trash can": 0.0037,
+    "picture": 0.0373,
+    "cutting board": 0.0004,
+    "paper": 0.0025,
+    "ceiling": 0.0009,
+    "window": 0.0057,
+    "tv": 0.0004,
+    "shelf": 0.0036,
+    "laptop": 0.0001,
+    "microwave": 0.0025,
+    "backpack": 0.0059,
+    "soap dispenser": 0.0001,
+    "chair": 0.0002,
+    "bottle": 0.0,
+    "kettle": 0.0,
+    "towel": 0.0015,
+    "box": 0.0008,
+    "sofa": 0.002,
+    "bed": 0.0047,
+    "basket": 0.0001,
+    "tissue box": 0.0001,
+    "monitor": 0.0,
+    "kitchen cabinet": 0.0333,
+    "crate": 0.0007,
+    "power strip": 0.0,
+    "shoes": 0.0001,
+    "book": 0.0004,
+    "light switch": 0.0004,
+    "floor": 0.116,
+    "door": 0.0476,
+    "bag": 0.0018
+   },
+   "panst3r": {
+    "socket": 0.0001,
+    "doorframe": 0.0327,
+    "table": 0.012,
+    "sink": 0.0018,
+    "wall": 0.3935,
+    "suitcase": 0.0057,
+    "curtain": 0.0016,
+    "pillow": 0.0,
+    "windowsill": 0.0007,
+    "bowl": 0.0001,
+    "cabinet": 0.0153,
+    "trash can": 0.0007,
+    "picture": 0.0275,
+    "paper": 0.0054,
+    "ceiling": 0.0019,
+    "window": 0.0079,
+    "microwave": 0.0042,
+    "backpack": 0.006,
+    "chair": 0.0018,
+    "bottle": 0.0007,
+    "towel": 0.0003,
+    "box": 0.0029,
+    "sofa": 0.0002,
+    "kitchen counter": 0.0005,
+    "bed": 0.0008,
+    "tissue box": 0.001,
+    "painting": 0.0181,
+    "kitchen cabinet": 0.0478,
+    "shoes": 0.0001,
+    "light switch": 0.0007,
+    "floor": 0.1527,
+    "door": 0.0743,
+    "bag": 0.0008,
+    "blanket": 0.0001
+   },
+   "iggt": {
+    "refrigerator": 0.0003,
+    "wall": 0.9953,
+    "picture": 0.0028,
+    "ceiling": 0.0003,
+    "shelf": 0.0005,
+    "chair": 0.0008
+   },
+   "uni3r": {
+    "wall": 0.0987,
+    "cabinet": 0.2701,
+    "picture": 0.3648,
+    "ceiling": 0.0102,
+    "shelf": 0.2324,
+    "chair": 0.0099,
+    "floor": 0.013,
+    "door": 0.0009
+   }
+  }
+ },
+ "scannetpp_5748ce6f01_case0": {
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "whiteboard",
+    "color": "#1a27b2"
+   },
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "office chair",
+    "color": "#1ab266"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "cup",
+    "color": "#2643ff"
+   },
+   {
+    "name": "light switch",
+    "color": "#ff26c1"
+   },
+   {
+    "name": "socket",
+    "color": "#1a4eb2"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "poster",
+    "color": "#26e5ff"
+   },
+   {
+    "name": "doorframe",
+    "color": "#1ab233"
+   },
+   {
+    "name": "tv",
+    "color": "#7f1ab2"
+   },
+   {
+    "name": "box",
+    "color": "#b21a80"
+   },
+   {
+    "name": "curtain",
+    "color": "#26adff"
+   },
+   {
+    "name": "cabinet",
+    "color": "#2fff26"
+   },
+   {
+    "name": "monitor",
+    "color": "#b28c1a"
+   },
+   {
+    "name": "window frame",
+    "color": "#26f6ff"
+   },
+   {
+    "name": "bottle",
+    "color": "#afff26"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   },
+   {
+    "name": "keyboard",
+    "color": "#1ab272"
+   },
+   {
+    "name": "mouse",
+    "color": "#251ab2"
+   },
+   {
+    "name": "picture",
+    "color": "#4c1ab2"
+   },
+   {
+    "name": "telephone",
+    "color": "#28b21a"
+   },
+   {
+    "name": "toilet",
+    "color": "#1a1bb2"
+   },
+   {
+    "name": "trash can",
+    "color": "#34b21a"
+   },
+   {
+    "name": "whiteboard eraser",
+    "color": "#6226ff"
+   }
+  ],
+  "share": {
+   "ours": {
+    "whiteboard": 0.1447,
+    "doorframe": 0.0007,
+    "office chair": 0.0502,
+    "keyboard": 0.0,
+    "table": 0.0535,
+    "wall": 0.5177,
+    "curtain": 0.0002,
+    "poster": 0.0019,
+    "window frame": 0.0001,
+    "telephone": 0.0,
+    "cabinet": 0.0001,
+    "tv": 0.0003,
+    "chair": 0.0073,
+    "box": 0.0002,
+    "monitor": 0.0001,
+    "floor": 0.14,
+    "door": 0.0833
+   },
+   "gt": {
+    "whiteboard": 0.1518,
+    "socket": 0.0002,
+    "office chair": 0.0599,
+    "table": 0.0524,
+    "cup": 0.0005,
+    "wall": 0.5089,
+    "window": 0.0043,
+    "light switch": 0.0005,
+    "floor": 0.1373,
+    "door": 0.0842
+   },
+   "panst3r": {
+    "whiteboard": 0.1893,
+    "socket": 0.0001,
+    "doorframe": 0.0054,
+    "office chair": 0.0456,
+    "table": 0.0716,
+    "mouse": 0.0001,
+    "wall": 0.3832,
+    "telephone": 0.0003,
+    "cabinet": 0.0175,
+    "trash can": 0.0003,
+    "picture": 0.0008,
+    "whiteboard eraser": 0.0001,
+    "ceiling": 0.0043,
+    "window": 0.0045,
+    "tv": 0.0022,
+    "chair": 0.0162,
+    "bottle": 0.0,
+    "box": 0.0004,
+    "light switch": 0.0006,
+    "floor": 0.1723,
+    "door": 0.0715
+   },
+   "iggt": {
+    "toilet": 0.001,
+    "table": 0.0339,
+    "wall": 0.9162,
+    "cabinet": 0.0,
+    "picture": 0.0002,
+    "ceiling": 0.0012,
+    "tv": 0.0,
+    "chair": 0.0439,
+    "floor": 0.0036
+   },
+   "uni3r": {
+    "table": 0.0271,
+    "wall": 0.5045,
+    "picture": 0.0226,
+    "ceiling": 0.0003,
+    "chair": 0.1362,
+    "floor": 0.3086,
+    "door": 0.0006
+   }
+  }
+ },
+ "scannetpp_5f99900f09_case0": {
+  "classes": [
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "kitchen cabinet",
+    "color": "#c0ff26"
+   },
+   {
+    "name": "whiteboard",
+    "color": "#1a27b2"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "refrigerator",
+    "color": "#2654ff"
+   },
+   {
+    "name": "box",
+    "color": "#b21a80"
+   },
+   {
+    "name": "kitchen counter",
+    "color": "#b2261a"
+   },
+   {
+    "name": "trash can",
+    "color": "#34b21a"
+   },
+   {
+    "name": "monitor",
+    "color": "#b28c1a"
+   },
+   {
+    "name": "suitcase",
+    "color": "#269cff"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "printer",
+    "color": "#b21a74"
+   },
+   {
+    "name": "cabinet",
+    "color": "#2fff26"
+   },
+   {
+    "name": "bag",
+    "color": "#ffac26"
+   },
+   {
+    "name": "shelf",
+    "color": "#8926ff"
+   },
+   {
+    "name": "plant pot",
+    "color": "#26ff87"
+   },
+   {
+    "name": "computer tower",
+    "color": "#26ff76"
+   },
+   {
+    "name": "storage cabinet",
+    "color": "#d126ff"
+   },
+   {
+    "name": "doorframe",
+    "color": "#1ab233"
+   },
+   {
+    "name": "window frame",
+    "color": "#26f6ff"
+   },
+   {
+    "name": "office chair",
+    "color": "#1ab266"
+   },
+   {
+    "name": "plant",
+    "color": "#1a8db2"
+   },
+   {
+    "name": "sofa",
+    "color": "#b21ab2"
+   },
+   {
+    "name": "telephone",
+    "color": "#28b21a"
+   },
+   {
+    "name": "bookshelf",
+    "color": "#ff5326"
+   },
+   {
+    "name": "curtain",
+    "color": "#26adff"
+   },
+   {
+    "name": "microwave",
+    "color": "#9a26ff"
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#401ab2"
+   },
+   {
+    "name": "backpack",
+    "color": "#9ab21a"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   },
+   {
+    "name": "electrical duct",
+    "color": "#ff26d2"
+   },
+   {
+    "name": "windowsill",
+    "color": "#26ffbf"
+   },
+   {
+    "name": "book",
+    "color": "#ff268a"
+   },
+   {
+    "name": "heater",
+    "color": "#1a5ab2"
+   },
+   {
+    "name": "light switch",
+    "color": "#ff26c1"
+   },
+   {
+    "name": "paper",
+    "color": "#66ff26"
+   },
+   {
+    "name": "picture",
+    "color": "#4c1ab2"
+   },
+   {
+    "name": "sink",
+    "color": "#1ab2a5"
+   },
+   {
+    "name": "soap dispenser",
+    "color": "#9eff26"
+   },
+   {
+    "name": "socket",
+    "color": "#1a4eb2"
+   },
+   {
+    "name": "speaker",
+    "color": "#1ab2b1"
+   },
+   {
+    "name": "tv",
+    "color": "#7f1ab2"
+   }
+  ],
+  "share": {
+   "ours": {
+    "whiteboard": 0.0375,
+    "heater": 0.0,
+    "plant": 0.0021,
+    "doorframe": 0.0047,
+    "office chair": 0.0023,
+    "table": 0.0274,
+    "wall": 0.3032,
+    "curtain": 0.0007,
+    "window frame": 0.0037,
+    "computer tower": 0.0283,
+    "windowsill": 0.0001,
+    "telephone": 0.0018,
+    "cabinet": 0.0316,
+    "trash can": 0.0061,
+    "ceiling lamp": 0.0003,
+    "ceiling": 0.0001,
+    "window": 0.0021,
+    "tv": 0.0,
+    "microwave": 0.0004,
+    "backpack": 0.0001,
+    "chair": 0.0326,
+    "printer": 0.0008,
+    "box": 0.0133,
+    "sofa": 0.0018,
+    "kitchen counter": 0.0082,
+    "monitor": 0.0042,
+    "kitchen cabinet": 0.0005,
+    "storage cabinet": 0.0261,
+    "book": 0.0,
+    "electrical duct": 0.0001,
+    "floor": 0.3955,
+    "bookshelf": 0.0013,
+    "door": 0.0605,
+    "bag": 0.0025
+   },
+   "gt": {
+    "whiteboard": 0.0418,
+    "socket": 0.0,
+    "table": 0.0324,
+    "refrigerator": 0.0293,
+    "wall": 0.2955,
+    "suitcase": 0.0053,
+    "plant pot": 0.0002,
+    "cabinet": 0.0024,
+    "trash can": 0.0069,
+    "window": 0.0046,
+    "shelf": 0.0012,
+    "chair": 0.0381,
+    "printer": 0.0043,
+    "box": 0.0134,
+    "kitchen counter": 0.0083,
+    "monitor": 0.0062,
+    "kitchen cabinet": 0.0582,
+    "floor": 0.38,
+    "door": 0.0699,
+    "bag": 0.002
+   },
+   "panst3r": {
+    "whiteboard": 0.0425,
+    "heater": 0.0001,
+    "plant": 0.0015,
+    "doorframe": 0.0005,
+    "office chair": 0.0031,
+    "table": 0.0233,
+    "sink": 0.0009,
+    "speaker": 0.0005,
+    "refrigerator": 0.0322,
+    "wall": 0.3058,
+    "suitcase": 0.0044,
+    "window frame": 0.0005,
+    "cabinet": 0.031,
+    "trash can": 0.0046,
+    "ceiling lamp": 0.0001,
+    "paper": 0.0008,
+    "ceiling": 0.0005,
+    "window": 0.0055,
+    "microwave": 0.0031,
+    "backpack": 0.0011,
+    "soap dispenser": 0.0001,
+    "chair": 0.03,
+    "printer": 0.0038,
+    "box": 0.011,
+    "sofa": 0.0008,
+    "kitchen counter": 0.007,
+    "monitor": 0.0038,
+    "kitchen cabinet": 0.0279,
+    "light switch": 0.0002,
+    "floor": 0.3259,
+    "door": 0.0581
+   },
+   "iggt": {
+    "plant": 0.0016,
+    "table": 0.0041,
+    "wall": 0.0222,
+    "suitcase": 0.0011,
+    "plant pot": 0.0002,
+    "cabinet": 0.0045,
+    "picture": 0.9379,
+    "paper": 0.0002,
+    "ceiling": 0.0005,
+    "tv": 0.0002,
+    "chair": 0.0187,
+    "box": 0.0014,
+    "floor": 0.0054,
+    "door": 0.0019
+   },
+   "uni3r": {
+    "table": 0.0023,
+    "refrigerator": 0.0035,
+    "wall": 0.1247,
+    "cabinet": 0.0221,
+    "picture": 0.1245,
+    "ceiling": 0.0446,
+    "tv": 0.0001,
+    "chair": 0.0116,
+    "floor": 0.6656,
+    "door": 0.001
+   }
+  }
+ },
+ "scannetpp_a8bf42d646_case0": {
+  "classes": [
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "cabinet",
+    "color": "#2fff26"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "doorframe",
+    "color": "#1ab233"
+   },
+   {
+    "name": "jacket",
+    "color": "#67b21a"
+   },
+   {
+    "name": "windowsill",
+    "color": "#26ffbf"
+   },
+   {
+    "name": "picture",
+    "color": "#4c1ab2"
+   },
+   {
+    "name": "window frame",
+    "color": "#26f6ff"
+   },
+   {
+    "name": "trash can",
+    "color": "#34b21a"
+   },
+   {
+    "name": "heater",
+    "color": "#1a5ab2"
+   },
+   {
+    "name": "crate",
+    "color": "#e226ff"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   },
+   {
+    "name": "socket",
+    "color": "#1a4eb2"
+   },
+   {
+    "name": "box",
+    "color": "#b21a80"
+   },
+   {
+    "name": "pipe",
+    "color": "#ff2641"
+   },
+   {
+    "name": "light switch",
+    "color": "#ff26c1"
+   },
+   {
+    "name": "bag",
+    "color": "#ffac26"
+   },
+   {
+    "name": "poster",
+    "color": "#26e5ff"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "cloth",
+    "color": "#1a81b2"
+   },
+   {
+    "name": "whiteboard",
+    "color": "#1a27b2"
+   },
+   {
+    "name": "book",
+    "color": "#ff268a"
+   },
+   {
+    "name": "ceiling lamp",
+    "color": "#401ab2"
+   },
+   {
+    "name": "clock",
+    "color": "#ab26ff"
+   },
+   {
+    "name": "kitchen counter",
+    "color": "#b2261a"
+   },
+   {
+    "name": "office chair",
+    "color": "#1ab266"
+   },
+   {
+    "name": "paper",
+    "color": "#66ff26"
+   },
+   {
+    "name": "shelf",
+    "color": "#8926ff"
+   },
+   {
+    "name": "soap dispenser",
+    "color": "#9eff26"
+   },
+   {
+    "name": "sofa",
+    "color": "#b21ab2"
+   },
+   {
+    "name": "storage cabinet",
+    "color": "#d126ff"
+   },
+   {
+    "name": "table lamp",
+    "color": "#ffbd26"
+   },
+   {
+    "name": "telephone",
+    "color": "#28b21a"
+   }
+  ],
+  "share": {
+   "ours": {
+    "whiteboard": 0.0002,
+    "heater": 0.0014,
+    "cloth": 0.0005,
+    "doorframe": 0.0157,
+    "office chair": 0.0,
+    "table": 0.0318,
+    "wall": 0.288,
+    "poster": 0.0061,
+    "window frame": 0.0083,
+    "windowsill": 0.0074,
+    "cabinet": 0.0501,
+    "trash can": 0.0095,
+    "ceiling lamp": 0.0,
+    "jacket": 0.0035,
+    "ceiling": 0.0002,
+    "window": 0.0196,
+    "chair": 0.0005,
+    "box": 0.0001,
+    "sofa": 0.0,
+    "kitchen counter": 0.0,
+    "crate": 0.0015,
+    "pipe": 0.0026,
+    "book": 0.0,
+    "floor": 0.3948,
+    "door": 0.1581
+   },
+   "gt": {
+    "socket": 0.0007,
+    "heater": 0.0032,
+    "doorframe": 0.0189,
+    "table": 0.0514,
+    "wall": 0.2679,
+    "window frame": 0.0077,
+    "windowsill": 0.0082,
+    "cabinet": 0.0566,
+    "trash can": 0.0062,
+    "ceiling lamp": 0.0,
+    "picture": 0.0079,
+    "jacket": 0.0087,
+    "ceiling": 0.0015,
+    "window": 0.0203,
+    "box": 0.0006,
+    "crate": 0.0021,
+    "pipe": 0.0004,
+    "light switch": 0.0003,
+    "floor": 0.3786,
+    "door": 0.1585,
+    "bag": 0.0002
+   },
+   "panst3r": {
+    "cloth": 0.0,
+    "doorframe": 0.011,
+    "table": 0.0331,
+    "wall": 0.254,
+    "poster": 0.0053,
+    "window frame": 0.0001,
+    "windowsill": 0.0021,
+    "telephone": 0.0003,
+    "cabinet": 0.0382,
+    "trash can": 0.0063,
+    "ceiling lamp": 0.0002,
+    "paper": 0.0017,
+    "ceiling": 0.0002,
+    "window": 0.032,
+    "shelf": 0.0002,
+    "soap dispenser": 0.0005,
+    "chair": 0.0,
+    "clock": 0.0002,
+    "box": 0.0002,
+    "storage cabinet": 0.0159,
+    "pipe": 0.0012,
+    "floor": 0.3744,
+    "door": 0.1493,
+    "bag": 0.0099,
+    "table lamp": 0.0001
+   },
+   "iggt": {
+    "table": 0.0313,
+    "wall": 0.0785,
+    "picture": 0.0127,
+    "paper": 0.0108,
+    "ceiling": 0.0002,
+    "window": 0.0,
+    "floor": 0.8168,
+    "door": 0.0496
+   },
+   "uni3r": {
+    "table": 0.0054,
+    "wall": 0.7568,
+    "picture": 0.0363,
+    "chair": 0.0012,
+    "floor": 0.006,
+    "door": 0.1942
+   }
+  }
+ },
+ "stfd_area_5a_case0": {
+  "classes": [
+   {
+    "name": "bookcase",
+    "color": "#2632ff"
+   },
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "clutter",
+    "color": "#4fb21a"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "board",
+    "color": "#1ab23f"
+   },
+   {
+    "name": "column",
+    "color": "#b23e1a"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   }
+  ],
+  "share": {
+   "ours": {
+    "table": 0.0495,
+    "bookcase": 0.2668,
+    "wall": 0.2791,
+    "clutter": 0.0504,
+    "ceiling": 0.0012,
+    "window": 0.0182,
+    "chair": 0.0185,
+    "floor": 0.2103,
+    "door": 0.1061
+   },
+   "gt": {
+    "board": 0.0115,
+    "table": 0.0502,
+    "bookcase": 0.2837,
+    "wall": 0.2274,
+    "clutter": 0.0455,
+    "ceiling": 0.0,
+    "window": 0.0374,
+    "chair": 0.019,
+    "column": 0.0058,
+    "floor": 0.206,
+    "door": 0.1135
+   },
+   "panst3r": {
+    "board": 0.0013,
+    "table": 0.0351,
+    "bookcase": 0.1911,
+    "wall": 0.1899,
+    "clutter": 0.0201,
+    "ceiling": 0.0699,
+    "window": 0.0109,
+    "chair": 0.0129,
+    "floor": 0.1856,
+    "door": 0.0715
+   },
+   "iggt": {
+    "table": 0.0008,
+    "bookcase": 0.0002,
+    "wall": 0.001,
+    "clutter": 0.9954,
+    "chair": 0.0013,
+    "floor": 0.0013
+   },
+   "uni3r": {
+    "table": 0.0618,
+    "bookcase": 0.2386,
+    "wall": 0.1258,
+    "clutter": 0.4198,
+    "ceiling": 0.0085,
+    "window": 0.0738,
+    "chair": 0.0215,
+    "floor": 0.0502
+   }
+  }
+ },
+ "stfd_area_5a_case3": {
+  "classes": [
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "clutter",
+    "color": "#4fb21a"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "bookcase",
+    "color": "#2632ff"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "column",
+    "color": "#b23e1a"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "board",
+    "color": "#1ab23f"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   },
+   {
+    "name": "sofa",
+    "color": "#b21ab2"
+   }
+  ],
+  "share": {
+   "ours": {
+    "board": 0.035,
+    "table": 0.0299,
+    "bookcase": 0.0507,
+    "wall": 0.3682,
+    "clutter": 0.0533,
+    "ceiling": 0.0003,
+    "window": 0.0284,
+    "chair": 0.0082,
+    "floor": 0.321,
+    "door": 0.105
+   },
+   "gt": {
+    "board": 0.0033,
+    "table": 0.0331,
+    "bookcase": 0.0723,
+    "wall": 0.2935,
+    "clutter": 0.112,
+    "window": 0.0238,
+    "chair": 0.0062,
+    "sofa": 0.0,
+    "column": 0.0325,
+    "floor": 0.3154,
+    "door": 0.1079
+   },
+   "panst3r": {
+    "board": 0.0067,
+    "table": 0.0197,
+    "bookcase": 0.0575,
+    "wall": 0.256,
+    "clutter": 0.0446,
+    "ceiling": 0.1337,
+    "window": 0.0367,
+    "chair": 0.005,
+    "floor": 0.162,
+    "door": 0.0834
+   },
+   "iggt": {
+    "table": 0.2328,
+    "bookcase": 0.0029,
+    "wall": 0.6794,
+    "clutter": 0.0599,
+    "chair": 0.0241,
+    "floor": 0.0009
+   },
+   "uni3r": {
+    "table": 0.4931,
+    "bookcase": 0.0148,
+    "wall": 0.0855,
+    "clutter": 0.3062,
+    "ceiling": 0.0143,
+    "floor": 0.0861
+   }
+  }
+ },
+ "stfd_area_5a_case5": {
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "bookcase",
+    "color": "#2632ff"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   },
+   {
+    "name": "clutter",
+    "color": "#4fb21a"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "board",
+    "color": "#1ab23f"
+   },
+   {
+    "name": "column",
+    "color": "#b23e1a"
+   },
+   {
+    "name": "sofa",
+    "color": "#b21ab2"
+   },
+   {
+    "name": "beam",
+    "color": "#26ff98"
+   }
+  ],
+  "share": {
+   "ours": {
+    "table": 0.0044,
+    "bookcase": 0.0248,
+    "wall": 0.4267,
+    "clutter": 0.0161,
+    "ceiling": 0.0172,
+    "window": 0.0017,
+    "chair": 0.0064,
+    "floor": 0.3239,
+    "door": 0.1788
+   },
+   "gt": {
+    "board": 0.0049,
+    "table": 0.0062,
+    "bookcase": 0.0329,
+    "wall": 0.3953,
+    "beam": 0.0003,
+    "clutter": 0.0178,
+    "ceiling": 0.0243,
+    "window": 0.0072,
+    "chair": 0.0072,
+    "sofa": 0.0011,
+    "column": 0.0013,
+    "floor": 0.3211,
+    "door": 0.1805
+   },
+   "panst3r": {
+    "board": 0.0048,
+    "table": 0.0057,
+    "bookcase": 0.0042,
+    "wall": 0.4255,
+    "clutter": 0.0113,
+    "ceiling": 0.0293,
+    "window": 0.002,
+    "chair": 0.0061,
+    "floor": 0.2548,
+    "door": 0.1353
+   },
+   "iggt": {
+    "wall": 0.0086,
+    "clutter": 0.9782,
+    "ceiling": 0.0003,
+    "window": 0.0,
+    "chair": 0.0014,
+    "floor": 0.0049,
+    "door": 0.0066
+   },
+   "uni3r": {
+    "wall": 0.1956,
+    "clutter": 0.4822,
+    "ceiling": 0.0318,
+    "floor": 0.2866,
+    "door": 0.0038
+   }
+  }
+ },
+ "stfd_area_5b_case1": {
+  "classes": [
+   {
+    "name": "wall",
+    "color": "#2665ff"
+   },
+   {
+    "name": "floor",
+    "color": "#ff26e3"
+   },
+   {
+    "name": "door",
+    "color": "#ff9b26"
+   },
+   {
+    "name": "bookcase",
+    "color": "#2632ff"
+   },
+   {
+    "name": "column",
+    "color": "#b23e1a"
+   },
+   {
+    "name": "clutter",
+    "color": "#4fb21a"
+   },
+   {
+    "name": "sofa",
+    "color": "#b21ab2"
+   },
+   {
+    "name": "chair",
+    "color": "#a6b21a"
+   },
+   {
+    "name": "table",
+    "color": "#1ab299"
+   },
+   {
+    "name": "window",
+    "color": "#77ff26"
+   },
+   {
+    "name": "board",
+    "color": "#1ab23f"
+   },
+   {
+    "name": "ceiling",
+    "color": "#73b21a"
+   }
+  ],
+  "share": {
+   "ours": {
+    "table": 0.0019,
+    "bookcase": 0.0671,
+    "wall": 0.5253,
+    "clutter": 0.0299,
+    "ceiling": 0.0005,
+    "window": 0.002,
+    "chair": 0.0032,
+    "sofa": 0.0201,
+    "floor": 0.2471,
+    "door": 0.103
+   },
+   "gt": {
+    "board": 0.0001,
+    "table": 0.0031,
+    "bookcase": 0.0889,
+    "wall": 0.4507,
+    "clutter": 0.0421,
+    "window": 0.0027,
+    "chair": 0.0032,
+    "sofa": 0.021,
+    "column": 0.0487,
+    "floor": 0.2365,
+    "door": 0.1028
+   },
+   "panst3r": {
+    "table": 0.0025,
+    "bookcase": 0.0276,
+    "wall": 0.2883,
+    "clutter": 0.0275,
+    "ceiling": 0.0056,
+    "window": 0.0057,
+    "chair": 0.0042,
+    "floor": 0.2919,
+    "door": 0.1334
+   },
+   "iggt": {
+    "table": 0.0048,
+    "bookcase": 0.0007,
+    "wall": 0.0072,
+    "clutter": 0.8915,
+    "window": 0.0002,
+    "chair": 0.0939,
+    "floor": 0.0,
+    "door": 0.0016
+   },
+   "uni3r": {
+    "table": 0.0478,
+    "wall": 0.4745,
+    "clutter": 0.3096,
+    "chair": 0.1215,
+    "floor": 0.0466
+   }
+  }
+ }
+}

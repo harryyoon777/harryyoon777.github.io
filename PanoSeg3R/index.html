@@ -249,6 +249,16 @@
   .toolbar button:hover { border-color: var(--ink); }
   .fineprint { margin-top: 12px; font-size: .9rem; color: var(--faint); }
 
+  .pcd-legend { margin-top: 16px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 8px 8px; }
+  .pcd-legend-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 0 8px 6px; font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); border-bottom: 1px solid var(--line); }
+  .pcd-legend-head .mono { text-transform: none; letter-spacing: 0; }
+  .pcd-legend ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 1px 6px; }
+  .pcd-legend li button { width: 100%; display: grid; grid-template-columns: 14px 1fr; gap: 9px; align-items: center; padding: 4px 8px; border: 0; border-radius: 6px; background: transparent; color: var(--ink); font-family: var(--body); font-size: .96rem; text-align: left; cursor: pointer; }
+  .pcd-legend li button:hover, .pcd-legend li button.on { background: var(--sunk); }
+  .pcd-legend li button.absent { color: var(--faint); }
+  .pcd-legend .sw { width: 14px; height: 14px; border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15); }
+  .pcd-more { margin: 6px 8px 0; padding: 0; border: 0; background: none; color: var(--accent); font-family: var(--body); font-weight: 600; font-size: .92rem; cursor: pointer; }
+
   /* bibtex */
   .bib { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
   .bib pre { margin: 0; padding: 18px 20px; overflow-x: auto; font-family: var(--mono); font-size: .84rem; line-height: 1.65; color: var(--ink); }
@@ -447,6 +457,14 @@
           <label for="psize">Point size <input type="range" id="psize" min="0.005" max="0.06" step="0.0025" value="0.02"></label>
           <button type="button" id="reset-view">Reset view</button>
         </div>
+      </div>
+      <div class="pcd-legend">
+        <div class="pcd-legend-head">
+          <span>Classes in view</span>
+          <span class="mono" id="pcd-legend-note">hover or click a class to highlight it</span>
+        </div>
+        <ul id="pcd-legend"></ul>
+        <button type="button" class="pcd-more" id="pcd-more" hidden></button>
       </div>
     </div>
     <p class="fineprint">Point clouds are randomly downsampled to at most 150k points for the browser. All predictions are shown in the GT frame.</p>
@@ -730,6 +748,9 @@
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
       g.setAttribute('color', new THREE.BufferAttribute(col, 3, true));
+      const key = new Uint32Array(n);
+      for (let i = 0; i < n; i++) key[i] = (col[3 * i] << 16) | (col[3 * i + 1] << 8) | col[3 * i + 2];
+      g.userData = { orig: col.slice(), key };
       return g;
     });
     cache.set(path, p);
@@ -746,6 +767,9 @@
       if (v.points) { v.scene.remove(v.points); v.points.material.dispose(); }
       v.points = new THREE.Points(geom, new THREE.PointsMaterial({ size: pointSize, vertexColors: true, sizeAttenuation: true }));
       v.scene.add(v.points);
+      v.method = method;
+      paint(v);
+      renderLegend();
       v.count.textContent = METHOD_LABEL[method] + ' · ' + scene.methods[method].points.toLocaleString() + ' pts';
     } catch (e) {
       console.error(e);
@@ -754,6 +778,61 @@
       if (token === v.token) v.spin.hidden = true;
     }
   }
+
+  // Legend: classes of the two clouds on screen. Hover or click one to fade every other class.
+  let legendData = {};
+  let hlKey = -1, pinnedKey = -1, showAll = false;
+  const MIN_SHARE = 0.005;
+  const legendEl = document.getElementById('pcd-legend');
+  const moreEl = document.getElementById('pcd-more');
+
+  function hexKey(h) { return parseInt(h.slice(1), 16); }
+
+  function paint(v) {
+    if (!v.points) return;
+    const g = v.points.geometry, { orig, key } = g.userData, attr = g.getAttribute('color'), c = attr.array;
+    if (hlKey < 0) c.set(orig);
+    else for (let i = 0, n = key.length; i < n; i++) {
+      const o = 3 * i;
+      if (key[i] === hlKey) { c[o] = orig[o]; c[o + 1] = orig[o + 1]; c[o + 2] = orig[o + 2]; }
+      else { c[o] = orig[o] * .15 + 200; c[o + 1] = orig[o + 1] * .15 + 203; c[o + 2] = orig[o + 2] * .15 + 208; }
+    }
+    attr.needsUpdate = true;
+  }
+  function setHighlight(k) {
+    if (k === hlKey) return;
+    hlKey = k;
+    legendEl.querySelectorAll('button').forEach(b => b.classList.toggle('on', +b.dataset.k === hlKey));
+    viewers.forEach(paint);
+  }
+
+  function renderLegend() {
+    const L = legendData[scene.id];
+    if (!L || !left.method || !right.method) return;
+    const a = L.share[left.method], b = L.share[right.method];
+    const rows = L.classes.filter(c => (a[c.name] || 0) > 0 || (b[c.name] || 0) > 0);
+    const main = rows.filter(c => (a[c.name] || 0) >= MIN_SHARE || (b[c.name] || 0) >= MIN_SHARE);
+    const shown = showAll ? rows : main;
+    legendEl.replaceChildren(...shown.map(c => {
+      const li = document.createElement('li'), btn = document.createElement('button'), k = hexKey(c.color);
+      btn.type = 'button'; btn.dataset.k = k;
+      const pa = ((a[c.name] || 0) * 100).toFixed(1), pb = ((b[c.name] || 0) * 100).toFixed(1);
+      btn.title = METHOD_LABEL[left.method] + ' ' + pa + '% · ' + METHOD_LABEL[right.method] + ' ' + pb + '% of points';
+      if (!(b[c.name] > 0) || !(a[c.name] > 0)) btn.classList.add('absent');
+      if (k === hlKey) btn.classList.add('on');
+      const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = c.color;
+      const nm = document.createElement('span'); nm.textContent = c.name;
+      btn.append(sw, nm);
+      btn.addEventListener('mouseenter', () => { if (pinnedKey < 0) setHighlight(k); });
+      btn.addEventListener('mouseleave', () => { if (pinnedKey < 0) setHighlight(-1); });
+      btn.addEventListener('click', () => { pinnedKey = pinnedKey === k ? -1 : k; setHighlight(pinnedKey); });
+      li.appendChild(btn); return li;
+    }));
+    const hidden = rows.length - main.length;
+    moreEl.hidden = hidden === 0;
+    moreEl.textContent = showAll ? 'Show fewer' : 'Show ' + hidden + ' smaller classes';
+  }
+  moreEl.addEventListener('click', () => { showAll = !showAll; renderLegend(); });
 
   function resetView() {
     const e = scene.extent;
@@ -765,6 +844,8 @@
 
   function selectScene(i) {
     scene = scenes[i];
+    hlKey = -1; pinnedKey = -1; showAll = false;
+    left.method = right.method = null;
     document.querySelectorAll('.scene-btn').forEach((b, j) => b.classList.toggle('active', j === i));
     document.getElementById('inputs').replaceChildren(...scene.views.map((src, k) => {
       const img = new Image(); img.src = src; img.alt = 'Input panorama ' + (k + 1); img.loading = 'lazy';
@@ -794,8 +875,12 @@
     for (const v of viewers) v.renderer.render(v.scene, camera);
   }
 
-  fetch('assets/pcd/scenes.json').then(r => r.json()).then(list => {
+  Promise.all([
+    fetch('assets/pcd/scenes.json').then(r => r.json()),
+    fetch('assets/pcd/legend.json').then(r => r.json()).catch(() => ({})),
+  ]).then(([list, legend]) => {
     scenes = list;
+    legendData = legend;
     const row = document.getElementById('scene-row');
     list.forEach((s, i) => {
       const b = document.createElement('button');
